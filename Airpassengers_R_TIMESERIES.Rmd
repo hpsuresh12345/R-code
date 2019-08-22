@@ -1,0 +1,29 @@
+install.packages("TTR",Dependencies=TRUE)
+library(TTR)
+install.packages("forecast",Dependencies=TRUE)
+library(forecast)
+getwd()
+setwd("C:\\Suresha\\Reva\\Trimester 1\\Appliedstatisctics\\Rexamples")
+getwd()
+data ("AirPassengers")
+data1<-AirPassengers
+class(data1)
+summary(data1)
+print(ncol(data1))
+print(nrow(data1))
+
+plot(data1)
+plot(decompose(data1,type='additive'))
+plot(decompose(data1,type='multiplicative'))
+data2<-HoltWinters(data1,seasonal='additive')
+
+data2$fitted
+data2$model
+
+plot(data2,main='Holt-winters Exponential smoothing')
+
+plot(data2$residuals,ylab='Forecast Error')
+
+mae=mean(abs(data2$residuals),na.rm=TRUE)
+
+
